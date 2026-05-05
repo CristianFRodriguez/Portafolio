@@ -123,8 +123,7 @@ export const BookChapters = () => {
         {chapter && (
           <>
             <div
-              className="relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer select-none"
-              className="min-h-[320px] sm:min-h-[420px] lg:min-h-[480px]"
+              className="relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer select-none min-h-[320px] sm:min-h-[420px] lg:min-h-[480px]"
               onMouseEnter={() => setPaused(true)}
               onMouseLeave={() => setPaused(false)}
               onClick={() => setSelectedChapter(chapter)}
