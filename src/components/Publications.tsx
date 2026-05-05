@@ -267,23 +267,10 @@ export const Publications = () => {
               onKeyDown={(e) => e.key === "Enter" && setSelectedPublication(pub)}
               aria-label={`View details for ${pub.title}`}
             >
-              {/* Background image */}
+              {/* Background gradient */}
               <div className="absolute inset-0">
-                {pub.image ? (
-                  <img
-                    src={pub.image}
-                    alt=""
-                    className="w-full h-full object-cover transition-opacity duration-500"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                    <BookOpen className="w-24 h-24 text-white/20" />
-                  </div>
-                )}
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
+                <div className="w-full h-full bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               </div>
 
               {/* Year + type badges top-left */}
