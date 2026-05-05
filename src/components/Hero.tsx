@@ -13,6 +13,7 @@ const NAV_LINKS = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string>("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -94,9 +95,45 @@ const Navbar = () => {
       </div>
 
       {/* Mobile hamburger */}
-      <button className="md:hidden p-2 text-slate-600" aria-label="Open menu">
+      <button
+        className="md:hidden p-2 text-slate-600"
+        aria-label="Open menu"
+        onClick={() => setMenuOpen((o) => !o)}
+      >
         <Menu className="w-5 h-5" />
       </button>
+
+      {/* Mobile menu dropdown */}
+      {menuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-lg md:hidden">
+          <div className="flex flex-col px-6 py-4 gap-4">
+            {NAV_LINKS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                className="text-sm font-medium text-slate-700 hover:text-blue-700 transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ))}
+            <button
+              className="text-left text-sm font-medium bg-slate-900 text-white rounded-full px-5 py-2 w-fit"
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = "/CV_Cristian_Rodriguez_2025.docx";
+                link.download = "CV_Cristian_Rodriguez_2025.docx";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setMenuOpen(false);
+              }}
+            >
+              Download CV
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
@@ -209,7 +246,7 @@ export const Hero = () => {
         <div className="w-full grid lg:grid-cols-2 items-stretch" style={{ minHeight: "100dvh" }}>
 
           {/* ── Left: Photo — full bleed to viewport edge ─────────────────── */}
-          <div className="order-2 lg:order-1 relative overflow-hidden min-h-[260px]" style={{ minHeight: "100dvh" }}>
+          <div className="order-2 lg:order-1 relative overflow-hidden h-[55vw] sm:h-[45vw] lg:h-auto lg:min-h-screen">
             <img
               src={profilePhoto}
               alt="Cristian Felipe Rodríguez Ospino — Instructor Professor in Biomedical Engineering"

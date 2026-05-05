@@ -717,7 +717,7 @@ export const AcademicTimeline = () => {
                       const text = isRich ? it.text : it;
                       const link = isRich && it.link ? it.link : undefined;
                       return (
-                        <li key={idx} className="flex items-start justify-between gap-3 text-sm text-slate-700">
+                        <li key={idx} className="flex flex-col gap-1.5 text-sm text-slate-700">
                           <div className="flex items-start gap-2.5">
                             <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" aria-hidden="true" />
                             <span>{text}</span>
@@ -727,7 +727,7 @@ export const AcademicTimeline = () => {
                               href={link.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-blue-200 text-blue-600 hover:bg-blue-50 text-xs font-medium transition flex-shrink-0"
+                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-blue-200 text-blue-600 hover:bg-blue-50 text-xs font-medium transition w-fit ml-4"
                             >
                               {link.label}
                               <ExternalLink className="w-3 h-3" />

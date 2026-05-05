@@ -124,7 +124,7 @@ export const BookChapters = () => {
           <>
             <div
               className="relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer select-none"
-              style={{ minHeight: "480px" }}
+              className="min-h-[320px] sm:min-h-[420px] lg:min-h-[480px]"
               onMouseEnter={() => setPaused(true)}
               onMouseLeave={() => setPaused(false)}
               onClick={() => setSelectedChapter(chapter)}
