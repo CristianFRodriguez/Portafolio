@@ -76,14 +76,14 @@ const BAR_COLORS = ["#3b82f6", "#2563eb", "#0891b2"];
 
 export const ScholarMetrics = ({
   publications = 13,
-  citations = 207,
+  citations = 224,
   hIndex = 9,
-  i10Index = 8,
+  i10Index = 9,
   byYear = [
     { year: 2023, citations: 22 },
     { year: 2024, citations: 61 },
     { year: 2025, citations: 97 },
-    { year: 2026, citations: 22 },
+    { year: 2026, citations: 38 },
   ],
   scholarUrl = "https://scholar.google.com/citations?user=ZtjgHeMAAAAJ&hl=en",
 }: ScholarMetricsProps) => {

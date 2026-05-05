@@ -305,7 +305,7 @@ export const Hero = () => {
                 </span>
                 <span className="text-slate-300 text-xs">·</span>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                  13 Papers · 153 Citations · h-index 8
+                  13 Papers · 224 Citations · h-index 9
                 </span>
               </div>
 
