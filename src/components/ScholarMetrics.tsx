@@ -28,23 +28,23 @@ interface StatCardProps {
 
 const StatCard = ({ label, value, sub, accent, index }: StatCardProps) => (
   <div
-    className="relative rounded-xl p-4 border transition-all duration-200 animate-fade-in overflow-hidden group hover:shadow-md"
+    className="flex flex-col items-center justify-center rounded-2xl p-5 border transition-all duration-200 animate-fade-in group hover:shadow-md hover:-translate-y-0.5"
     style={{
       animationDelay: `${index * 80}ms`,
-      borderColor: accent ? "rgba(29,78,216,0.2)" : "rgb(241,245,249)",
+      borderColor: accent ? "rgba(29,78,216,0.25)" : "rgb(226,232,240)",
       background: accent
-        ? "linear-gradient(135deg, rgba(29,78,216,0.04) 0%, rgba(8,145,178,0.06) 100%)"
+        ? "linear-gradient(135deg, rgba(29,78,216,0.06) 0%, rgba(8,145,178,0.08) 100%)"
         : "white",
     }}
     aria-label={`${label}: ${value}`}
   >
-    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">
+    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 text-center">
       {label}
     </p>
     <p
       className="font-black leading-none tracking-tight"
       style={{
-        fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+        fontSize: "clamp(2rem, 4vw, 2.6rem)",
         background: accent
           ? "linear-gradient(135deg, #1d4ed8 0%, #0891b2 100%)"
           : undefined,
@@ -56,7 +56,7 @@ const StatCard = ({ label, value, sub, accent, index }: StatCardProps) => (
     >
       {value}
     </p>
-    {sub && <p className="text-[10px] text-slate-400 mt-0.5">{sub}</p>}
+    {sub && <p className="text-[10px] text-slate-400 mt-1 text-center">{sub}</p>}
   </div>
 );
 
@@ -72,7 +72,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-const BAR_COLORS = ["#3b82f6", "#2563eb", "#0891b2"];
+const BAR_COLORS = ["#3b82f6", "#2563eb", "#0891b2", "#60a5fa"];
 
 export const ScholarMetrics = ({
   publications = 13,
@@ -91,8 +91,8 @@ export const ScholarMetrics = ({
     <section className="bg-slate-50/60 border-y border-slate-100">
       <div className="max-w-5xl mx-auto px-6 sm:px-10 py-14">
 
-        {/* ── Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span
@@ -110,7 +110,7 @@ export const ScholarMetrics = ({
               Data speaks for itself
             </h2>
             <p className="text-[14px] text-slate-500 mt-1">
-              Metrics sourced from Google Scholar · Updated 2025
+              Metrics sourced from Google Scholar · Updated 2026
             </p>
           </div>
           <a
@@ -124,46 +124,49 @@ export const ScholarMetrics = ({
           </a>
         </div>
 
-        {/* ── KPI Grid + Chart side by side */}
-        <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-start">
+        {/* Main card */}
+        <div className="rounded-2xl border border-slate-100 bg-white shadow-sm overflow-hidden">
 
-          {/* KPI Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {/* KPI Cards row */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-slate-100">
             <StatCard label="Publications" value={publications} accent index={0} />
             <StatCard label="Citations" value={citations} sub="total" accent index={1} />
             <StatCard label="h-index" value={hIndex} sub="career" index={2} />
-            <StatCard label="i10-index" value={i10Index} index={3} />
+            <StatCard label="i10-index" value={i10Index} sub="career" index={3} />
           </div>
 
-          {/* Citations by Year */}
-          <div className="rounded-xl border border-slate-100 bg-white p-5 shadow-sm w-full lg:w-72">
+          {/* Divider */}
+          <div className="border-t border-slate-100" />
+
+          {/* Chart full width */}
+          <div className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="w-3.5 h-3.5 text-blue-600" />
               <p className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Citations by Year
               </p>
             </div>
-            <div className="h-[120px]">
+            <div className="h-[160px] sm:h-[200px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={byYear}
-                  margin={{ top: 4, right: 4, left: -24, bottom: 0 }}
+                  margin={{ top: 4, right: 8, left: -20, bottom: 0 }}
                 >
                   <XAxis
                     dataKey="year"
                     stroke="#94a3b8"
-                    style={{ fontSize: "11px" }}
+                    style={{ fontSize: "12px" }}
                     tickLine={false}
                     axisLine={false}
                   />
                   <YAxis
                     stroke="#94a3b8"
-                    style={{ fontSize: "11px" }}
+                    style={{ fontSize: "12px" }}
                     tickLine={false}
                     axisLine={false}
                   />
                   <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(241,245,249,0.6)" }} />
-                  <Bar dataKey="citations" radius={[5, 5, 0, 0]} animationDuration={700} animationBegin={200}>
+                  <Bar dataKey="citations" radius={[6, 6, 0, 0]} animationDuration={700} animationBegin={200} maxBarSize={80}>
                     {byYear.map((_, i) => (
                       <Cell key={i} fill={BAR_COLORS[i % BAR_COLORS.length]} />
                     ))}
@@ -172,8 +175,8 @@ export const ScholarMetrics = ({
               </ResponsiveContainer>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   );
