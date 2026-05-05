@@ -166,10 +166,6 @@ export const CoursesTeaching = () => {
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    {/* Icon overlay */}
-                    <div className={`absolute top-3 left-3 w-9 h-9 rounded-xl ${accentMap[course.accent].badge} flex items-center justify-center text-lg shadow-md`}>
-                      {course.icon}
-                    </div>
                   </div>
 
                   <CardHeader className="pb-2 pt-4">
